@@ -1,0 +1,11 @@
+# Changes here will be overwritten by Copier
+_commit: a1d2782
+_src_path: gh:LabAutomationAndScreening/copier-nuxt-static-aws
+description: Track experiments
+node_version: 22.13.0
+pnpm_version: 9.15.4
+python_version: 3.12.7
+repo_name: biotasker
+ssh_port_number: 56097
+use_windows_in_ci: false
+

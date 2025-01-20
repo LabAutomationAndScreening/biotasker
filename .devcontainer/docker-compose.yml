@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  devcontainer:
+    build:
+      context: .
+      args:
+        VENV_PATH: /workspaces/biotasker/graphql_lambda/.venv
+    # You can run `devcontainer-info content-url` in codespaces to see what image base is
+    volumes:
+      - ..:/workspaces/biotasker:cached
+      # Break out the venv folder as a separate docker volume for better performance on Windows hosts
+      - python_graphql_lambda_venv:/workspaces/biotasker/graphql_lambda/.venv
+    command: sleep infinity
+    ports:
+      - "56097:2222"
+    environment:
+      - AWS_PROFILE=localstack
+
+
+volumes:
+  python_graphql_lambda_venv: {}
