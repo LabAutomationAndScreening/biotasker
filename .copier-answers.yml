@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier
-_commit: a1d2782
+_commit: 43c1cda
 _src_path: gh:LabAutomationAndScreening/copier-nuxt-static-aws
 description: Track experiments
 node_version: 22.13.0
