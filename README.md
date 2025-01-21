@@ -5,8 +5,9 @@
 
 
 
-
-
+## Initializing Nuxt for the app
+At the root of the repo, run `pnpm dlx nuxi@latest init biotasker_app`
+Select "overwrite directory", `pnpm` and do not initialize git repository.
 
 ## Updating from the template
 This repository uses a copier template. To pull in the latest updates from the template, use the command:
