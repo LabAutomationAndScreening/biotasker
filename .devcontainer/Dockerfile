@@ -8,11 +8,25 @@ RUN apt-get update -y && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the venv folder and set permissions for anyone to modify---this is necessary to be able to break out the venv folder as a separate docker volume for better performance on Windows hosts
-ARG VENV_PATH=/workspaces/copier-base-template/.venv
+ARG REPO_NAME=copier-base-template
+ENV VENV_PATH=/workspaces/${REPO_NAME}/graphql_lambda/.venv
 RUN mkdir -p /workspace && \
     mkdir -p ${VENV_PATH} && \
     chmod -R 777 /workspaces ${VENV_PATH} && \
     chgrp -R 0 /workspaces ${VENV_PATH}
+
+ENV PNPM_STORE_PATH=/workspaces/${REPO_NAME}/.pnpm-store
+RUN mkdir -p /workspace && \
+    mkdir -p ${PNPM_STORE_PATH} && \
+    chmod -R 777 /workspaces ${PNPM_STORE_PATH} && \
+    chgrp -R 0 /workspaces ${PNPM_STORE_PATH}
+
+ARG APP_NAME=default
+ENV APP_NODE_MODULES_PATH=/workspaces/${REPO_NAME}/${APP_NAME}_app/node_modules
+RUN mkdir -p /workspace && \
+    mkdir -p ${APP_NODE_MODULES_PATH} && \
+    chmod -R 777 /workspaces ${APP_NODE_MODULES_PATH} && \
+    chgrp -R 0 /workspaces ${APP_NODE_MODULES_PATH}
 
 # SSH
 EXPOSE 2222

@@ -4,18 +4,38 @@ services:
     build:
       context: .
       args:
-        VENV_PATH: /workspaces/biotasker/graphql_lambda/.venv
+        REPO_NAME: biotasker
+        APP_NAME: biotasker
     # You can run `devcontainer-info content-url` in codespaces to see what image base is
     volumes:
       - ..:/workspaces/biotasker:cached
       # Break out the venv folder as a separate docker volume for better performance on Windows hosts
       - python_graphql_lambda_venv:/workspaces/biotasker/graphql_lambda/.venv
+      # Break out the pnpm store folder as a separate docker volume for better performance on Windows hosts
+      - pnpm_store:/workspaces/biotasker/.pnpm-store
+      # And node_modules
+      - app_node_modules:/workspaces/biotasker/biotasker_app/node_modules
     command: sleep infinity
     ports:
       - "56097:2222"
     environment:
       - AWS_PROFILE=localstack
 
+  postgres:
+    image: postgres:16.4-bookworm # bookworm appears to match the default tag. no known reason we are specifically using bookworm though https://hub.docker.com/_/postgres/tags?name=16.4
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   python_graphql_lambda_venv: {}
+  pnpm_store: {}
+  app_node_modules: {}
+  postgres_data: {}
