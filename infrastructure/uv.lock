@@ -582,9 +582,7 @@ wheels = [
 name = "infrastructure"
 version = "0.1.0"
 source = { editable = "." }
-
-[package.dev-dependencies]
-dev = [
+dependencies = [
     { name = "boto3" },
     { name = "boto3-stubs", extra = ["all"] },
     { name = "pulumi" },
@@ -598,9 +596,7 @@ dev = [
 ]
 
 [package.metadata]
-
-[package.metadata.requires-dev]
-dev = [
+requires-dist = [
     { name = "boto3", specifier = ">=1.36.3" },
     { name = "boto3-stubs", extras = ["all"], specifier = ">=1.36.3" },
     { name = "pulumi", specifier = ">=3.147.0" },

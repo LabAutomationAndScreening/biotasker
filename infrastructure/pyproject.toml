@@ -7,14 +7,7 @@ readme = "README.md"
 requires-python = ">=3.12.7"
 
 dependencies = [
-
-]
-
-
-[dependency-groups]
-dev = [
-    # Specific to this template
-
+    # Specific to this project
 
     # Managed by upstream template
     "pyright>=1.1.391",
