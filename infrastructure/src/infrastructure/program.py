@@ -27,7 +27,7 @@ def pulumi_program() -> None:
 
     # Create Resources Here
     bucket_name = f"{pulumi.get_stack()}.app.biotasker.com"
-    website_bucket = s3.Bucket(
+    app_website_bucket = s3.Bucket(
         bucket_name,
         bucket_name=bucket_name,
         website_configuration=s3.BucketWebsiteConfigurationArgs(index_document="index.html", error_document="404.html"),
@@ -36,10 +36,10 @@ def pulumi_program() -> None:
             block_public_acls=False, block_public_policy=False, ignore_public_acls=False, restrict_public_buckets=False
         ),
     )
-    export("website-url", website_bucket.website_url)
-    _ = website_bucket.bucket_name.apply(
+    export("app-website-url", app_website_bucket.website_url)
+    _ = app_website_bucket.bucket_name.apply(
         lambda bucket_name: s3.BucketPolicy(
-            append_resource_suffix("website"),
+            append_resource_suffix("app-website"),
             bucket=bucket_name,
             policy_document=get_policy_document(
                 statements=[
