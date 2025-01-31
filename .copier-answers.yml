@@ -1,7 +1,9 @@
 # Changes here will be overwritten by Copier
-_commit: a08038d
+_commit: 06fa9f1
 _src_path: gh:LabAutomationAndScreening/copier-nuxt-static-aws
 app_name: biotasker
+aws_identity_center_id: d-9067c20053
+aws_production_account_id: '490004614649'
 description: Track experiments
 has_backend: true
 node_version: 22.13.0
@@ -9,5 +11,6 @@ pnpm_version: 9.15.4
 python_version: 3.12.7
 repo_name: biotasker
 ssh_port_number: 56097
+use_staging_environment: false
 use_windows_in_ci: false
 
